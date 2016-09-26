@@ -1,0 +1,23 @@
+#!upstart
+#{{ ansible_managed }}
+
+
+description "Upstart script to run a tornado app as a service"
+author "Erik Moroz"
+
+start on startup
+stop on shutdown
+
+console log
+kill timeout 20
+limit nofile 65536 65536
+
+
+setuid {{ deploy_user }}
+setgid {{ deploy_group }}
+
+chdir {{ django_dir }}
+
+env DJANGO_SETTINGS_MODULE={{ deploy_app_name }}.settings
+
+exec {{ virtualenv_dir }}/bin/python manage.py run_tornado_service --port {{ tornado_port }}

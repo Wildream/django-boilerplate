@@ -1,0 +1,4 @@
+---
+- name: restart flower
+  become: yes
+  service: name={{ deploy_app_name }}-flower state=restarted

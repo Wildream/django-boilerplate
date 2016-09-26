@@ -1,0 +1,4 @@
+---
+- include: api.yml
+# tasks for deploying frontend part
+# - include: webapp.yml

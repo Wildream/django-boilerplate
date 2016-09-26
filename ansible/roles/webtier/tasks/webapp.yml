@@ -1,0 +1,46 @@
+---
+- name: Git | Pull sources from the repository
+  git:
+   dest: '{{ webapp_src_dir }}'
+   repo: '{{ webapp_repo }}'
+   version: '{{ webapp_repo_branch }}'
+   force: yes
+   update: yes
+   accept_hostkey: yes
+  register: webapp_git_clone
+  tags: [provision, webapp]
+
+- name: Create config.yml
+  template:
+    src: config.yml.j2
+    dest: '{{ webapp_src_dir }}/src/config.yml'
+  when: webapp_git_clone.changed or force_upgrade
+  tags: [provision, webapp]
+
+- name: NPM | Install dependencies
+  command: npm install
+  args:
+    chdir: '{{ webapp_src_dir }}'
+  when: webapp_git_clone.changed or force_upgrade
+  tags: [provision, webapp]
+
+- name: NPM | deploy:prod
+  command: npm run deploy:prod
+  args:
+    chdir: '{{ webapp_src_dir }}'
+  when: webapp_git_clone.changed or force_upgrade
+  tags: [provision, webapp]
+
+- name: NPM frontend server | Generate upstart scripts
+  become: yes
+  template:
+    src: 'webapp.conf.j2'
+    dest: '/etc/init/{{ deploy_app_name }}-webapp.conf'
+    owner: root
+    group: root
+    mode: 0644
+  when: webapp_git_clone.changed or force_upgrade
+  tags: [provision, webapp]
+  notify:
+    - restart webapp
+    - restart nginx

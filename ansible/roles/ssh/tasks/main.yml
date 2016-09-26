@@ -1,0 +1,28 @@
+---
+- name: Make sure SSH directory exists
+  file:
+    path: "{{ ssh_dir }}"
+    state: "directory"
+
+- name: Upload SSH known hosts
+  known_hosts:
+    path: "{{ ssh_dir }}/known_hosts"
+    host: "{{ item }}"
+    key: "{{ lookup('pipe', 'ssh-keyscan -t rsa ' + item) }}"
+  with_items: "{{ ssh_known_hosts }}"
+
+- name: Upload SSH private key
+  copy:
+    content: "{{ ssh_private_key }}"
+    dest: "{{ ssh_dir }}/id_rsa"
+    mode: "0600"
+    owner: "{{ ssh_user }}"
+    group: "{{ ssh_group }}"
+
+- name: Upload SSH public key
+  copy:
+    content: "{{ ssh_public_key }}"
+    dest: "{{ ssh_dir }}/id_rsa.pub"
+    mode: "0600"
+    owner: "{{ ssh_user }}"
+    group: "{{ ssh_group }}"

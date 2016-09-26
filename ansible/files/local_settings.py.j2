@@ -1,0 +1,51 @@
+DEBUG = {{ environment_variables.DEBUG }}
+
+# Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+
+        'NAME': 'boilerplate',
+        'USER': 'boilerplate',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+DATABASES['default']['NAME'] = '{{ environment_variables.DATABASE_NAME }}'
+DATABASES['default']['USER'] = '{{ environment_variables.DATABASE_USER }}'
+DATABASES['default']['PASSWORD'] = '{{ environment_variables.DATABASE_PASSWORD }}'
+DATABASES['default']['HOST'] = '{{ environment_variables.DATABASE_HOST }}'
+DATABASES['default']['PORT'] = {{ environment_variables.DATABASE_PORT }}
+
+
+# Cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'PARSER_CLASS': 'redis.connection.HiredisParser',
+        }
+    }
+}
+
+CACHES['default']['LOCATION'] = '{{ environment_variables.CACHE_DEFAULT_LOCATION }}'
+
+CACHE_MACHINE_USE_REDIS = True
+REDIS_BACKEND = CACHES['default']['LOCATION']
+# -----------------
+# Celery
+# -----------------
+
+BROKER_URL = '{{ environment_variables.CACHE_CELERY_LOCATION }}'
+CELERY_RESULT_BACKEND = '{{ environment_variables.CACHE_CELERY_RESULT_LOCATION }}'
+
+# -----------------
+# Tornado
+# -----------------
+
+TORNADO_APP_PORT = {{ tornado_port }}
+TORNADO_APP_ADDRESS = '{{ tornado_host }}'

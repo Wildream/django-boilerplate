@@ -1,0 +1,9 @@
+---
+- name: Configure all database servers
+  hosts: dbservers
+  roles:
+    - role: common
+
+    - role: ANXS.postgresql
+      become: yes
+      when: dbservers_internal
