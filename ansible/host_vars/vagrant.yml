@@ -1,8 +1,26 @@
 ---
-### Vault ###
 vaulted_database_name: 'boilerplate'
 vaulted_database_user: 'boilerplate'
-vaulted_database_password: 'password'
+vaulted_database_password: 'boilerplate'
+
+### Postres (Private) ###
+postgresql_listen_addresses:
+  - 'localhost'
+postgresql_port: 5432
+
+postgresql_databases:
+  - name: '{{ vaulted_database_name }}'
+
+postgresql_users:
+  - name: '{{ vaulted_database_user }}'
+    pass: '{{ vaulted_database_password }}'
+    encrypted: no # denotes if the password is already encrypted.
+
+postgresql_user_privileges:
+  - name: '{{ vaulted_database_user }}'
+    db: '{{ vaulted_database_name }}'
+    priv: 'ALL'
+    role_attr_flags: 'SUPERUSER'
 
 
 ### Environment ###
