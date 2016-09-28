@@ -2,8 +2,6 @@
 - name: Configure all application servers
   hosts: appservers
   roles:
-    - role: ssh
-
     - role: ANXS.git
       become: yes
 

@@ -1,9 +1,4 @@
 ---
-### Vault ###
-vaulted_database_name: 'boilerplate'
-vaulted_database_user: 'boilerplate'
-vaulted_database_password: 'password'
-
 
 # Git
 git_version: 2.9.2
@@ -85,7 +80,7 @@ apt_packages: # Set list of additional packages which will be installed
 ntp_timezone: UTC
 
 
-### PostgreSQL ###
+### PostgreSQL (General) ###
 postgresql_version: 9.5
 postgresql_encoding: 'UTF-8'
 postgresql_locale: 'en_US.UTF-8'
@@ -93,24 +88,6 @@ postgresql_cluster_name: 'main'
 
 postgresql_admin_user: 'postgres'
 postgresql_default_auth_method: 'trust'
-
-postgresql_listen_addresses:
-  - 'localhost'
-postgresql_port: 5432
-
-postgresql_databases:
-  - name: '{{ vaulted_database_name }}'
-
-postgresql_users:
-  - name: '{{ vaulted_database_user }}'
-    pass: '{{ vaulted_database_password }}'
-    encrypted: no # denotes if the password is already encrypted.
-
-postgresql_user_privileges:
-  - name: '{{ vaulted_database_user }}'
-    db: '{{ vaulted_database_name }}'
-    priv: 'ALL'
-    role_attr_flags: 'SUPERUSER'
 
 
 ### API Docs ###
@@ -153,24 +130,6 @@ django_local_settings_file: '{{ django_dir }}/local_settings.py'
 django_local_settings: "{{ lookup('template', playbook_dir + '/files/local_settings.py.j2') }}"
 django_fixtures:
  - '{{ django_dir }}/fixtures/initial_data.json'
-
-
-### Environment ###
-environment_variables:
-  DJANGO_SETTINGS_MODULE: '{{ deploy_app_name }}.settings'
-  SECRET_KEY: 'super-secure-hash'
-  PYTHONHASHSEED: 1234
-
-  DATABASE_HOST: 'localhost'
-  DATABASE_PORT: 5432
-  DATABASE_NAME: '{{ vaulted_database_name }}'
-  DATABASE_USER: '{{ vaulted_database_user }}'
-  DATABASE_PASSWORD: '{{ vaulted_database_password }}'
-
-  CACHE_DEFAULT_LOCATION: 'redis://127.0.0.1:6379/1'
-  CACHE_CELERY_LOCATION: 'redis://127.0.0.1:6379/2'
-  CACHE_CELERY_RESULT_LOCATION: 'redis://127.0.0.1:6379/3'
-
 
 ### PIP ###
 pip_requirements:

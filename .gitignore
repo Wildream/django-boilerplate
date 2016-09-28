@@ -43,5 +43,8 @@ celerybeat-schedule
 venv/
 ENV/
 
-#IDE
+# IDE
 .idea
+
+# Vagrant
+.vagrant/
