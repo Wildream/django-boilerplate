@@ -3,22 +3,15 @@ DEBUG = {{ environment_variables.DEBUG }}
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'boilerplate',
-        'USER': 'boilerplate',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': '{{ environment_variables.DATABASE_NAME }}',
+        'USER': '{{ environment_variables.DATABASE_USER }}',
+        'PASSWORD': '{{ environment_variables.DATABASE_PASSWORD }}',
+        'HOST': '{{ environment_variables.DATABASE_HOST }}',
+        'PORT': {{ environment_variables.DATABASE_PORT }},
     }
 }
-
-DATABASES['default']['NAME'] = '{{ environment_variables.DATABASE_NAME }}'
-DATABASES['default']['USER'] = '{{ environment_variables.DATABASE_USER }}'
-DATABASES['default']['PASSWORD'] = '{{ environment_variables.DATABASE_PASSWORD }}'
-DATABASES['default']['HOST'] = '{{ environment_variables.DATABASE_HOST }}'
-DATABASES['default']['PORT'] = {{ environment_variables.DATABASE_PORT }}
-
 
 # Cache
 CACHES = {

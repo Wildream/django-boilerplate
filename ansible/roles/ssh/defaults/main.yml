@@ -1,7 +1,0 @@
----
-ssh_user: '{{ deploy_user }}'
-ssh_group: '{{ deploy_group }}'
-ssh_dir: '/home/{{ ssh_user }}/.ssh'
-ssh_known_hosts: []
-ssh_private_key: "{{ lookup('template', playbook_dir + '/files/ssh/key') }}"
-ssh_public_key: "{{ lookup('template', playbook_dir + '/files/ssh/key.pub') }}"
