@@ -48,3 +48,8 @@ ENV/
 
 # Vagrant
 .vagrant/
+
+# Ansible
+ansible/*.pem
+ansible/vault_pass.txt
+ansible/*.retry
