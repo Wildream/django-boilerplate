@@ -20,7 +20,6 @@ postgresql_user_privileges:
   - name: '{{ vaulted_database_user }}'
     db: '{{ vaulted_database_name }}'
     priv: 'ALL'
-    role_attr_flags: 'SUPERUSER'
 
 
 ### Environment ###
