@@ -3,7 +3,7 @@
 
 
 description "Upstart script to run a tornado app as a service"
-author "Erik Moroz"
+author "Erik Moroz && Misha Kalyna"
 
 start on startup
 stop on shutdown
@@ -15,9 +15,12 @@ limit nofile 65536 65536
 
 setuid {{ deploy_user }}
 setgid {{ deploy_group }}
+respawn
+
+pre-start script
+ sleep 5
+end script
 
 chdir {{ django_dir }}
 
-env DJANGO_SETTINGS_MODULE={{ deploy_app_name }}.settings
-
-exec {{ virtualenv_dir }}/bin/python manage.py run_tornado_service --port {{ tornado_port }}
+exec {{ virtualenv_dir }}/bin/python run_tornado_app.py --port {{ tornado_port }}

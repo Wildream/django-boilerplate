@@ -1,14 +1,11 @@
 import time
-from importlib import import_module
 
 import tornado.web
-from django.conf import settings
 from tornado import gen
 from tornado.ioloop import IOLoop
+from tornado.options import define, options  # options are required for tornado cli args parsing
 
-from tornado_app.urls import urlpatterns
-
-session_engine = import_module(settings.SESSION_ENGINE)
+define("port", default=None, help="Port for tornado application to listen on", type=int)
 
 
 @gen.coroutine
@@ -17,11 +14,15 @@ def async_sleep(seconds):
 
 
 def build_app():
+    from tornado_app.urls import urlpatterns
+
     application = tornado.web.Application(urlpatterns, autoreload=True)
     return application
 
 
 def run(port=None):
+    from django.conf import settings
+
     if port is None:
         port = settings.TORNADO_APP_PORT
     app = build_app()
