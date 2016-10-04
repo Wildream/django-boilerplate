@@ -10,5 +10,5 @@
   notify: Restart gunicorn
 
 - name: Install upstart script
-  template: src=upstart.conf.j2 dest=/etc/init/{{ gunicorn_app_name }}_gunicorn.conf
+  template: src=upstart.conf.j2 dest=/etc/init/{{ gunicorn_app_name }}-gunicorn.conf
   notify: Restart gunicorn

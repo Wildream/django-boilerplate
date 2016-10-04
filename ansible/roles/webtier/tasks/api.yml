@@ -75,6 +75,10 @@
     app_path: '{{ django_dir }}'
     virtualenv: '{{ virtualenv_dir }}'
   tags: [provision, api]
+
+- name: Restart services
+  become: yes
+  always_run: yes
   notify:
     - Restart gunicorn
     - restart nginx
@@ -82,3 +86,4 @@
     - restart redis
     - restart flower
     - restart tornado
+  command: 'true'
