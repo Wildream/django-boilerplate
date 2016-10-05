@@ -18,16 +18,17 @@
 
 ***
 #####_Notice!_ In this boilerplate is used Ansible Vault!
-Files `staging.yml` and `production.yml` are encrypted by default (Default password is `7ninjas`).
+Files `host_vars/staging/vault.yml` and `host_vars/staging/vault.yml` are encrypted by default (Default password is `7ninjas`).
+They're used to store sensitive data as db names, passwords, keys, secrets etc.
 Before deploying to public servers as production or staging you must:
  
- 1. Decrypt necessary files by command `ansible-vault decrypt staging.yml production.yml` (run it from ansible directory) using default password. 
+ 1. Decrypt necessary files by command `ansible-vault decrypt host_vars/staging/vault.yml host_vars/production/vault.yml` (run it from ansible directory) using default password. 
  2. Edit configuration in those files as needed.
     Also if it's first edition of those files you _SHOULD_ edit:
      - database name, user and password;
      - django secret key (http://www.miniwebtool.com/django-secret-key-generator/);
     For passwords better to use generated (http://passwordsgenerator.net/).
- 3. Encrypt files again with your _NEW AND SECURE_ password using command `ansible-vault encrypt staging.yml production.yml`.
+ 3. Encrypt files again with your _NEW AND SECURE_ password using command `ansible-vault encrypt host_vars/staging/vault.yml host_vars/production/vault.yml`.
  4. Create file `vault_pass.txt` in ansible root directory and write your password to it.
  5. Enjoy deployment :)
 ***
