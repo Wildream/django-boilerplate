@@ -3,7 +3,7 @@ from tornado_app.app import options, run
 import django
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "vliegwel.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "boilerplate.settings")
 
     django.setup()
 
