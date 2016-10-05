@@ -30,17 +30,6 @@
     chdir: '{{ webapp_src_dir }}'
   when: webapp_git_clone.changed or force_upgrade
   tags: [provision, webapp]
-
-- name: NPM frontend server | Generate upstart scripts
-  become: yes
-  template:
-    src: 'webapp.conf.j2'
-    dest: '/etc/init/{{ deploy_app_name }}-webapp.conf'
-    owner: root
-    group: root
-    mode: 0644
-  when: webapp_git_clone.changed or force_upgrade
-  tags: [provision, webapp]
   notify:
     - restart webapp
     - restart nginx
