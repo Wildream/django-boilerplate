@@ -1,16 +1,12 @@
 ---
-vaulted_database_name: 'boilerplate'
-vaulted_database_user: 'boilerplate'
-vaulted_database_password: 'boilerplate'
-
 ### Environment ###
 environment_variables:
-  NODE_ENV: 'development'
+  NODE_ENV: 'production'
 
-  DEBUG: True
+  DEBUG: False
   DJANGO_SETTINGS_MODULE: '{{ deploy_app_name }}.settings'
-  SECRET_KEY: '{{ vaulted_secret_key }}'
-  PYTHONHASHSEED: '{{ vaulted_pythonhashseed }}'
+  SECRET_KEY: 'super-secure-hash'
+  PYTHONHASHSEED: 897342
 
   DATABASE_HOST: 'localhost'
   DATABASE_PORT: 5432
@@ -24,18 +20,13 @@ environment_variables:
 
 
 ### Deploy ###
-deploy_env: development
+deploy_env: production
 force_upgrade: yes
 
-### Project ###
-cacheservers_internal: yes
-dbservers_internal: yes
-skip_checkout: yes
 
 ### Domains ###
-site_domain: 'boilerplate.local'
+site_domain: ''
 api_domain: 'api.{{ site_domain }}'
 flower_domain: 'flower.{{ site_domain }}'
 tornado_domain: 'ws.{{ site_domain }}'
 docs_domain: 'docs.{{ site_domain }}'
-
