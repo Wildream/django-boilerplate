@@ -8,7 +8,3 @@
 - name: Install gunicorn config
   template: src=gunicorn.py.j2 dest={{ gunicorn_config }}
   notify: Restart gunicorn
-
-- name: Install upstart script
-  template: src=upstart.conf.j2 dest=/etc/init/{{ gunicorn_app_name }}-gunicorn.conf
-  notify: Restart gunicorn

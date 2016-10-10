@@ -1,4 +1,4 @@
 ---
 - name: restart docs
   become: yes
-  service: name={{ deploy_app_name }}-docs state=restarted
+  command: supervisorctl restart {{ deploy_app_name }}-docs

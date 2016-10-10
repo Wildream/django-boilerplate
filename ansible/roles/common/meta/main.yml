@@ -17,3 +17,6 @@ dependencies:
 
   - role: environment
     become: yes
+
+  - role: supervisor
+    become: yes
