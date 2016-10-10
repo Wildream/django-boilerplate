@@ -1,0 +1,7 @@
+env: '{{ deploy_env }}'
+site:
+  domain: '{{ site_domain }}'
+api:
+  baseUrl: '{{ site_protocol }}://{{ api_domain }}/v1/'
+ws:
+  baseUrl: '{{ ws_protocol }}://{{ tornado_domain }}/v1/'

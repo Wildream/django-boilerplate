@@ -1,0 +1,30 @@
+---
+- name: restart celery
+  become: yes
+  service: state=restarted name={{celery_app_name}}-{{item.action|default('worker')}}{{item.queue|default('') and ('-' + item.queue) or ''}}
+  with_items: '{{ celery_run }}'
+
+- name: reload celery
+  become: yes
+  service: state=reloaded name={{celery_app_name}}-{{item.action|default('worker')}}{{item.queue|default('') and ('-' + item.queue) or ''}}
+  with_items: '{{ celery_run }}'
+
+- name: restart redis
+  become: yes
+  service: name=redis_{{ redis_port }} state=restarted
+
+- name: restart nginx
+  service: name=nginx state=restarted
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+
+- name: restart uwsgi
+  become: yes
+  service:
+    name: '{{uwsgi_name|mandatory}}'
+    state: restarted
+
+- name: restart webapp
+  become: yes
+  service: name={{ deploy_app_name }}-webapp state=restarted

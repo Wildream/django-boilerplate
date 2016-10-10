@@ -1,0 +1,16 @@
+---
+- name: Create config for docs
+  template:
+    src: 'mkdocs.yml.j2'
+    dest: '{{ api_src_dir }}/mkdocs.yml'
+
+- name: Docs | Generate upstart scripts
+  become: yes
+  template:
+    src: 'docs.conf.j2'
+    dest: '/etc/init/{{ deploy_app_name }}-docs.conf'
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart docs

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+targets=()
+
+for file in $(ls ansible/*.ini)
+do
+  filename=$(basename $file)
+  target="${filename%.*}"
+  targets+=($target)
+done
+
+function join {
+  local IFS="$1"
+  shift
+  echo "$*"
+}
+if [ -z "$2" ]
+then
+  TAGS=all
+else
+  TAGS=$2
+fi
+
+if [ -f ansible/$1.ini ]
+then
+  cd ansible
+  ansible-playbook -i $1.ini site.yml --tags $TAGS --vault-password-file vault_pass.txt
+else
+  echo usage: $0 '<'$(join '|' "${targets[@]}")'>'
+  exit -1
+fi

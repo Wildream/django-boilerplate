@@ -1,0 +1,4 @@
+---
+- name: restart gunicorn
+  become: true
+  service: name={{ gunicorn_app_name }}-gunicorn state=restarted

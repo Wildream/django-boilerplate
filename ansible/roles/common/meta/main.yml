@@ -1,0 +1,19 @@
+---
+dependencies:
+  - role: kamaln7.swapfile
+    become: yes
+
+  - role: Stouts.deploy
+    become: yes
+
+  - role: Stouts.apt
+    become: yes
+
+  - role: ANXS.hostname
+    become: yes
+
+  - role: ANXS.ntp
+    become: yes
+
+  - role: environment
+    become: yes

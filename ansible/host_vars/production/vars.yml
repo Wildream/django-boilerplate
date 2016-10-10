@@ -1,0 +1,32 @@
+---
+### Environment ###
+environment_variables:
+  NODE_ENV: 'production'
+
+  DEBUG: False
+  DJANGO_SETTINGS_MODULE: '{{ deploy_app_name }}.settings'
+  SECRET_KEY: 'super-secure-hash'
+  PYTHONHASHSEED: 897342
+
+  DATABASE_HOST: 'localhost'
+  DATABASE_PORT: 5432
+  DATABASE_NAME: '{{ vaulted_database_name }}'
+  DATABASE_USER: '{{ vaulted_database_user }}'
+  DATABASE_PASSWORD: '{{ vaulted_database_password }}'
+
+  CACHE_DEFAULT_LOCATION: 'redis://127.0.0.1:6379/1'
+  CACHE_CELERY_LOCATION: 'redis://127.0.0.1:6379/2'
+  CACHE_CELERY_RESULT_LOCATION: 'redis://127.0.0.1:6379/3'
+
+
+### Deploy ###
+deploy_env: production
+force_upgrade: yes
+
+
+### Domains ###
+site_domain: ''
+api_domain: 'api.{{ site_domain }}'
+flower_domain: 'flower.{{ site_domain }}'
+tornado_domain: 'ws.{{ site_domain }}'
+docs_domain: 'docs.{{ site_domain }}'
