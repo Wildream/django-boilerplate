@@ -1,10 +1,4 @@
 ---
-#- name: Install Python dependencies
-  #apt: name={{ item }} state=latest
-  #with_items:
-    #- python-dev
-    #- python-virtualenv
- 
 - name: Install libzmq and libevent
   apt: name={{ item }} state=latest
   with_items:
@@ -22,12 +16,10 @@
   file: path=/etc/circus state=directory
 
 - name: Deliver circus.ini config file
-  # become: yes
   template:
     src: "files/circus.ini"
     dest: "{{ circus_config_file_location }}"
 
 - name: Bring circus daemon to life
-  # become: yes
   command: "circusd --daemon {{ circus_config_file_location }}" 
       

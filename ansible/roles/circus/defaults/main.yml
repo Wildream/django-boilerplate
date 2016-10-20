@@ -13,3 +13,8 @@ circus_python_packages:
   - singledispatch==3.4.0.3
   - six==1.10.0
   - tornado==4.4.1
+
+
+circus_check_delay: 5
+circus_endpoint: tcp://127.0.0.1:5555
+circus_pubsub_endpoint: tcp://127.0.0.1:5556
