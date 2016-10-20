@@ -9,8 +9,8 @@ environment_variables:
 
   DEBUG: True
   DJANGO_SETTINGS_MODULE: '{{ deploy_app_name }}.settings'
-  SECRET_KEY: '{{ vaulted_secret_key }}'
-  PYTHONHASHSEED: '{{ vaulted_pythonhashseed }}'
+  # SECRET_KEY: '{{ vaulted_secret_key }}'
+  # PYTHONHASHSEED: '{{ vaulted_pythonhashseed }}'
 
   DATABASE_HOST: 'localhost'
   DATABASE_PORT: 5432

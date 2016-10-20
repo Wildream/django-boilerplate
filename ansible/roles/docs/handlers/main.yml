@@ -1,4 +1,4 @@
 ---
 - name: restart docs
   become: yes
-  command: supervisorctl restart {{ deploy_app_name }}-docs
+  command: circusctl restart {{ deploy_app_name }}-docs

@@ -3,6 +3,6 @@
   lineinfile:
     dest: "{{ environment_file }}"
     line: '{{ item.key }}="{{ item.value }}"'
-  with_dict: environment_variables
+  with_dict: '{{ environment_variables }}'
   register: environment_variables_status
   when: environment_variables is defined

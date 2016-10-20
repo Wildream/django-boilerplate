@@ -1,4 +1,4 @@
 ---
 - name: restart tornado
   become: yes
-  command: supervisorctl restart {{ deploy_app_name }}-tornado
+  command: circusctl restart {{ deploy_app_name }}-tornado
