@@ -1,4 +1,4 @@
 ---
 - name: restart flower
   become: yes
-  command: supervisorctl restart {{ deploy_app_name }}-flower
+  command: circusctl restart {{ deploy_app_name }}-flower

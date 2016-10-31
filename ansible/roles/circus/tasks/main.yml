@@ -1,0 +1,25 @@
+---
+- name: Install libzmq and libevent
+  apt: name={{ item }} state=latest
+  with_items:
+    - libzmq-dev
+    - libevent-dev
+  become: yes
+ 
+- name: "Install required Python packages: {{ circus_python_packages }}"
+  # virtualenv: "{{ circus_virtualenv }}"
+  pip: name={{ item }}
+  with_items: '{{ circus_python_packages }}'
+  become: yes
+
+- name: Create /etc/circus directory
+  file: path=/etc/circus state=directory
+
+- name: Deliver circus.ini config file
+  template:
+    src: "files/circus.ini"
+    dest: "{{ circus_config_file_location }}"
+
+- name: Bring circus daemon to life
+  command: "circusd --daemon {{ circus_config_file_location }}" 
+      

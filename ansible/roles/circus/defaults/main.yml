@@ -1,0 +1,20 @@
+---
+circus_config_dir: "/etc/circus"
+circus_config_file_location: "{{ circus_config_dir }}/circus.ini"
+
+circus_python_packages:
+  - backports-abc==0.4
+  - backports.ssl-match-hostname==3.5.0.1
+  - certifi==2016.9.26
+  - circus==0.14.0
+  - iowait==0.2
+  - psutil==4.3.1
+  - pyzmq==15.4.0
+  - singledispatch==3.4.0.3
+  - six==1.10.0
+  - tornado==4.4.1
+
+
+circus_check_delay: 5
+circus_endpoint: tcp://127.0.0.1:5555
+circus_pubsub_endpoint: tcp://127.0.0.1:5556

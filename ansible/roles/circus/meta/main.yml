@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Volodymyr Midianyi
+  description: 
+  company: 7ninjas
+  
+  license: MIT
+  
+  min_ansible_version: 1.2
+ 
+  galaxy_tags: [circus, proccess_manager]
+
+dependencies: []

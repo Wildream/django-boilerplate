@@ -18,5 +18,5 @@ dependencies:
   - role: environment
     become: yes
 
-  - role: supervisor
+  - role: circus
     become: yes

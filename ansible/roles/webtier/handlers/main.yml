@@ -27,4 +27,4 @@
 
 - name: restart webapp
   become: yes
-  command: supervisorctl restart {{ deploy_app_name }}-webapp
+  command: circusctl restart {{ deploy_app_name }}-webapp

@@ -37,9 +37,6 @@
 - src: Stouts.celery
   version: 1.3.0
 
-- src: https://github.com/valentinzberea/Stouts.supervisor  # forked version with fixed pip2 execution
-  name: supervisor
-
 - src: geerlingguy.nodejs
   version: 3.3.0
 
