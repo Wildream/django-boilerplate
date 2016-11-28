@@ -1,0 +1,31 @@
+---
+
+### Git ###
+git_version: 2.9.2
+
+
+### NTP ###
+ntp_timezone: UTC
+
+
+### SWAP ###
+swapfile_location: /swapfile
+swapfile_use_dd: False
+swapfile_size: 4096MB
+
+
+### Site ###
+api_src_dir: '{{ deploy_src_dir }}/api'
+api_repo_branch: ''
+api_repo: ''
+
+webapp_src_dir: '{{ deploy_src_dir }}/webapp'
+webapp_repo: ''
+webapp_repo_branch: ''
+
+
+### Options ###
+dbservers_internal: yes
+skip_checkout: no
+force_upgrade: no
+cacheservers_internal: yes

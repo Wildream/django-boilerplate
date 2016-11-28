@@ -1,0 +1,10 @@
+---
+
+### Node.JS ###
+nodejs_version: "6.x"
+nodejs_npm_global_packages:
+  - name: npm
+    version: 3.10.5
+  - name: webpack
+  - name: webpack-dev-server
+  - name: better-npm-run

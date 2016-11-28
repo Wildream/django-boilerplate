@@ -1,0 +1,34 @@
+---
+
+### Apt ###
+apt_enabled: yes  # Enable the role
+apt_default_packages: # List of default packages that will be installed
+  # TODO: Review package list
+  - command-not-found
+  - curl
+  - htop
+  - iftop
+  - iotop
+  - mercurial
+  - nmap
+  - pciutils
+  - screen
+  - sysstat
+  - vim
+  - wget
+  - ack-grep
+  - dstat
+  - mosh
+  - pciutils
+  - unzip
+  - p7zip-full
+
+apt_packages: # Set list of additional packages that will be installed
+  - python-pip
+  - build-essential
+  - python-dev
+  - python-setuptools
+  - libcurl4-openssl-dev
+  - libffi-dev
+  - libssl-dev
+  - libpq-dev

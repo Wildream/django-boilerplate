@@ -1,0 +1,17 @@
+---
+
+### Python ###
+python_versions:
+  - 2.7
+  - 3.5
+python_install: []
+python_virtualenvs:
+  - path: '{{ virtualenv_dir }}'
+    python: python3.5
+
+### Virtualenv ###
+virtualenv_dir: '{{ deploy_dir }}/venv'
+
+### PIP ###
+pip_requirements:
+  - '{{ django_dir }}/requirements.txt'

@@ -1,0 +1,26 @@
+---
+
+### Domains ###
+site_domain: 'boilerplate.local'
+api_domain: 'api.{{ site_domain }}'
+flower_domain: 'flower.{{ site_domain }}'
+tornado_domain: 'ws.{{ site_domain }}'
+docs_domain: 'docs.{{ site_domain }}'
+
+site_protocol: http
+ws_protocol: ws
+
+
+### WebApp ###
+webapp_host: localhost
+webapp_port: 8085
+
+
+### Tornado ###
+tornado_host: 127.0.0.1
+tornado_port: 9000
+
+
+### API Docs ###
+docs_host: 127.0.0.1
+docs_port: 8082
